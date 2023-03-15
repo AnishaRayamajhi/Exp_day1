@@ -5,17 +5,18 @@ const app= express();
 app.use(express.urlencoded({ extended : true}));
 
 let users=['ram','hari'];
+let categories=['book','copy'];
 
-app.get('/user', (req, res) => {
-    res.send(users);
+app.get('/category', (req, res) => {
+    res.send(categories);
 });
 
 
-app.post('/add-user', (req, res) => {
+app.post('/add-category', (req, res) => {
     if(req.body.name)
     {
-        users.push(req.body.name);
-        res.send(users);
+        categories.push(req.body.name);
+        res.send("categories added");
     }
     else{
         res.send("Please Provide name");
@@ -32,13 +33,13 @@ app.post('/add-user', (req, res) => {
 //    }
 // })
 
-app.get("/delete-user", (req, res)=> {
+app.get("/delete-category", (req, res)=> {
     if(req.query.name)
     {
-        users = users.filter((user) => {
-            return user !== req.query.name;
+        categories = categories.filter((user) => {
+            return categories !== req.query.name;
         });
-        res.send("User Deleted");
+        res.send("Category Deleted");
     }
     else{
         res.send("Please Provide name");
